@@ -5,7 +5,7 @@
 	<!-- For CH 2.0 deployment via MMP - groupId needs to be Business Group Id --> 
 	<groupId>bf7dedd1-ef02-4039-87fd-dd190d630c2c</groupId>
 	<artifactId>mule-cicd-actions-example</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-cicd-actions-example</name>
@@ -45,8 +45,8 @@
 						<applicationName>hello-ross</applicationName>
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>
-						<!-- 4 mins deployment timeout -->
-						<deploymentTimeout>240000</deploymentTimeout>
+						<!-- 10 mins deployment timeout -->
+						<deploymentTimeout>600000</deploymentTimeout>
 						<!-- Properties  clientid, clientsecret, API Manager credentials-->
 						<properties>
 							<cicd.welcome.message>${cicd.welcome.message}</cicd.welcome.message>
