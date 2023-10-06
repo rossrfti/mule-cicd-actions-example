@@ -136,7 +136,7 @@ jobs:
 
   # Steps for executing the deployment against Cloudhub2.0 Anypoint Platform
   deployProd:
-    needs: exchange
+    needs: deployDev
     runs-on: ubuntu-latest
     steps:    
     - uses: actions/checkout@v3
