@@ -102,8 +102,8 @@ jobs:
       run: |
         mvn -B clean deploy --file pom.xml
 
-# Steps for executing the deployment against Cloudhub2.0 Anypoint Platform
-  deploy:
+  # Steps for executing the deployment against Cloudhub2.0 Anypoint Platform
+  deployDev:
     needs: exchange
     runs-on: ubuntu-latest
     steps:    
@@ -133,6 +133,33 @@ jobs:
         AUTHOR: "Mr Bean"
       run: |
         mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Dev" -Duser.name="${{ secrets.USER }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Dev)!"
+
+  # Steps for executing the deployment against Cloudhub2.0 Anypoint Platform
+  deployProd:
+    needs: exchange
+    runs-on: ubuntu-latest
+    steps:    
+    - uses: actions/checkout@v3
+    - uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+          
+    - uses: s4u/maven-settings-action@v2.6.0
+      with:
+        servers: |
+          [{
+              "id": "anypoint-exchange-v3",
+              "username": "${{ secrets.ANYPOINT_USERNAME }}",
+              "password": "${{ secrets.ANYPOINT_PASSWORD }}"
+          },
+          {
+                "id": "cloudhub-deploy",
+                "username": "${{ secrets.ANYPOINT_USERNAME }}",
+                "password": "${{ secrets.ANYPOINT_PASSWORD }}"
+          }]
     - name: Deploy to CH 2.0 (Production)
       env:
         AUTHOR: "Mr Bean"
