@@ -1,2 +1,2 @@
 # mule-cicd-actions-example
-Cloudhub 2.0 Training - Module 5
+Sample project to showcase the use of CICD with Github Actions, completing the deployment to Cloudhub (Anypoint Platform)
