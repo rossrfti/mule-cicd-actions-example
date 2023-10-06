@@ -128,8 +128,13 @@ jobs:
                 "username": "${{ secrets.ANYPOINT_USERNAME }}",
                 "password": "${{ secrets.ANYPOINT_PASSWORD }}"
           }]
-    - name: Deploy to CloudHub 2
+    - name: Deploy to CH 2.0 (Dev)
       env:
         AUTHOR: "Mr Bean"
       run: |
-        mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Dev" -Duser.name="${{ secrets.USER }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation!"
+        mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Dev" -Duser.name="${{ secrets.USER }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Dev)!"
+    - name: Deploy to CH 2.0 (Production)
+      env:
+        AUTHOR: "Mr Bean"
+      run: |
+        mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Production" -Duser.name="${{ secrets.USER_PROD }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Production)!"
