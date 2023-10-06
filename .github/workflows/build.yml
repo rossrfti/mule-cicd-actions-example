@@ -132,7 +132,7 @@ jobs:
       env:
         AUTHOR: "Mr Bean"
       run: |
-        mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Dev" -Duser.name="${{ secrets.USER }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Dev)!"
+        mvn clean deploy --file pom.xml -DmuleDeploy -Dtag="-dev" -Denvironment="Dev" -Duser.name="${{ secrets.USER }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Dev)!"
 
   # Steps for executing the deployment against Cloudhub2.0 Anypoint Platform
   deployProd:
@@ -164,4 +164,4 @@ jobs:
       env:
         AUTHOR: "Mr Bean"
       run: |
-        mvn clean deploy --file pom.xml -DmuleDeploy -Denvironment="Production" -Duser.name="${{ secrets.USER_PROD }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Production)!"
+        mvn clean deploy --file pom.xml -DmuleDeploy -Dtag="" -Denvironment="Production" -Duser.name="${{ secrets.USER_PROD }}" -Dcicd.welcome.message="Welcome to the CH 2.0 Deployment Automation (Production)!"
